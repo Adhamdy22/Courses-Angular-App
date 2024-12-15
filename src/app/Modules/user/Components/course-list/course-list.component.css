@@ -1,0 +1,53 @@
+/* src/app/course-list/course-list.component.css */
+.container {
+  color: #fff;
+  background-color: #000;
+  padding: 2rem;
+}
+
+.card {
+  background-color: #333;
+}
+
+.card-title {
+  color: #ff4081;
+}
+
+.card-text {
+  color: #fff;
+}
+
+.btn-outline-warning {
+  border-color: #ff4081;
+  color: #ff4081;
+}
+
+.btn-outline-warning:hover {
+  background-color: #ff4081;
+  color: #fff;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #ff4081;
+}
+
+h2 {
+  color: #ffb400;
+}
+
+.lead {
+  font-size: 1.5rem;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-controls button {
+  margin: 0 10px;
+}
+

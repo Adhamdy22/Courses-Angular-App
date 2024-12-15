@@ -1,0 +1,28 @@
+.container {
+  padding-top: 50px;
+}
+
+.card {
+  border-radius: 15px;
+  border: none;
+}
+
+.card-header {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  font-size: 1.25rem;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.btn-block {
+  padding: 0.75rem;
+  font-size: 1.1rem;
+  width: 40%;
+}
+
+.text-danger {
+  font-size: 0.875em;
+}

@@ -1,0 +1,18 @@
+<!-- src/app/course-list/course-list.component.html -->
+<div *ngIf="coursesPerPage.length > 0; else errorTemplate">
+  <div class="course-list">
+    <app-course-card *ngFor="let course of coursesPerPage" [course]="course"></app-course-card>
+  </div>
+  <div class="pagination-controls">
+    <button (click)="prevPage()" [disabled]="currentPage === 1" class="btn btn-primary">Previous</button>
+    <span>Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="btn btn-primary">Next</button>
+  </div>
+</div>
+
+<!-- Error Template for no data / connection issue -->
+<ng-template #errorTemplate>
+  <div class="alert alert-danger">
+    Internet connection lost or no data available.
+  </div>
+</ng-template>

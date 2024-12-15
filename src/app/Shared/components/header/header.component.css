@@ -1,0 +1,7 @@
+/* src/app/header/header.component.css */
+
+.navbar-nav .nav-item .nav-link.active {
+  color: #ffc107; /* Change the color to highlight the active link */
+  font-weight: bold; /* Make the active link bold */
+  text-decoration: underline;
+}

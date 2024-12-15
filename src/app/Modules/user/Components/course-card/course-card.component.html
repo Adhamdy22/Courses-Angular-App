@@ -1,0 +1,49 @@
+<!-- src/app/course-card/course-card.component.html -->
+<div class="container">
+
+
+  <div class="card mb-4 shadow-sm bg-dark text-white">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-9">
+
+          <div *ngIf="course">
+            <h3>{{ course.description }}</h3>
+            <h4>Levels</h4>
+            <div *ngFor="let lvl of course.levels">
+              <br>
+              <h4 class="course-level">{{ lvl }}</h4>
+              <br>
+            </div>
+            <!-- Add more course details here -->
+          </div>
+          <br>
+          <div *ngIf="!course">
+            <p>Loading course details...</p>
+          </div>
+
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <h4>Topics</h4>
+            <div *ngFor="let topic of course?.topics">
+              <br>
+              <h5 class="course-topic">{{ topic }}</h5>
+              <br>
+            </div>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+    <a [routerLink]="['/courses', course.id]" class="btn btn-primary">Course Details</a>
+
+  </div>
+</div>

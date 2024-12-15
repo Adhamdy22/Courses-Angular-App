@@ -1,0 +1,41 @@
+/* src/app/course-card/course-card.component.css */
+.course-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin: 30px;
+  width: 250px;
+}
+
+.course-level {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background-color: #ac4646;
+  color: #333;
+}
+.course-topic {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background-color: #8bd317;
+  color: #000000;
+}
+
+
+
+.course-info {
+  padding: 15px;
+}
+
+.course-level {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 0.9em;
+}

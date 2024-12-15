@@ -1,0 +1,16 @@
+.course-level {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background-color: #1c9090;
+  color: #ffffff;
+}
+.course-topic {
+  display: inline-block;
+  margin-right: 5px;
+  padding: 2px 5px;
+  border-radius: 3px;
+  background-color: #e4590e;
+  color: #ffffff;
+}

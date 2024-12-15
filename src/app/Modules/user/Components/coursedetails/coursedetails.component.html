@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="card mb-4 shadow-sm bg-dark text-white">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-9">
+          <div *ngIf="course">
+            <h2>{{ course.id }}</h2>
+            <h2>{{ course.description }}</h2>
+            <h4>Levels</h4>
+            <div *ngFor="let lvl of course.levels">
+              <br>
+              <h5 class="course-level">{{ lvl }}</h5>
+              <br>
+            </div>
+          </div>
+          <br>
+          <div *ngIf="!course">
+            <p>Loading course details...</p>
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="row">
+            <h4>Topics</h4>
+            <div *ngFor="let topic of course?.topics">
+              <br>
+              <h5 class="course-topic">{{ topic }}</h5>
+              <br>
+            </div>
+            <br>
+            <a [href]="course?.url" class="btn btn-primary" style="width: 50%;margin-top: 40%;">Course Link</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-between">
+    <button class="btn btn-primary" (click)="getPrevious()" [disabled]="currentIndex === 0">Previous</button>
+    <button class="btn btn-primary" (click)="getNext()" [disabled]="currentIndex === courses.length - 1">Next</button>
+  </div>
+</div>

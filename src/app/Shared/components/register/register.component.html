@@ -1,0 +1,125 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-lg">
+        <div class="card-header bg-dark text-white text-center">
+          <h3>Register</h3>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <!-- Full Name Input -->
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                class="form-control"
+                placeholder="Enter your full name"
+                formControlName="fullName"
+
+
+              />
+              <!-- Error message for invalid full name -->
+              <div *ngIf="form.get('fullName')?.touched && form.get('fullName')?.errors?.['required']" class="text-danger small">
+                Full Name Is Required
+              </div>
+              <div *ngIf="form.get('fullName')?.touched && form.get('fullName')?.errors?.['minlength']" class="text-danger small">
+                Full name Must be at least {{form.get('fullName')?.errors?.['minlength'].requiredLength}} characters
+
+                you have inserted {{form.get('fullName')?.errors?.['minlength'].actualLength}}
+              </div>
+            </div>
+
+            <!-- Email Input (standalone-name) in [ngModelOptions] -->
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-control"
+                placeholder="Enter your Email"
+                formControlName="email"
+
+              />
+              <!-- Error message for invalid email -->
+              <div *ngIf="form.get('email')?.touched && form.get('email')?.errors?.['required']" class="text-danger small">
+                Email is required.
+              </div>
+              <div *ngIf="form.get('email')?.touched && form.get('email')?.errors?.['email']" class="text-danger small">
+                Please Enter a Valid Email
+              </div>
+              <div *ngIf="form.get('email')?.touched && form.get('email')?.errors?.['pattern']" class="text-danger small">
+                Email Must Be end with .com
+              </div>
+
+            </div>
+
+            <!-- Password Input -->
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-control"
+                formControlName="password"
+                placeholder="Enter your password"
+
+              />
+              <!-- Error message for invalid password -->
+              <div *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched" class="text-danger small">
+               Password Is Required
+              </div>
+              <div *ngIf="form.get('password')?.errors?.['minlength'] && form.get('password')?.touched" class="text-danger small">
+                Password Must Have At Least 8 Characters
+              </div>
+              <div *ngIf="form.get('password')?.errors?.['pattern'] && form.get('password')?.touched" class="text-danger small">
+                Password Must Have At Least Capital Letter and Special Charachter and Numbers
+              </div>
+            </div>
+
+            <!-- Confirm Password Input -->
+            <div class="form-group">
+              <label for="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                id="confirmPassword"
+                name="confirmPassword"
+                class="form-control"
+                formControlName="confirmPassword"
+
+                placeholder="Confirm your password"
+
+              />
+              <!-- Error message for password mismatch -->
+              <div *ngIf="passwordMismatch()" class="text-danger small">
+                Passwords do not match.
+              </div>
+            </div>
+            <br>
+
+            <!-- Submit Button -->
+            <div class="text-center">
+              <button
+                type="submit"
+                class="btn btn-dark btn-block"
+                [disabled]="form.get('confirmPassword')?.invalid || passwordMismatch()"
+              >
+                Register
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="card-footer text-center">
+          <p class="small">
+            Already have an account?
+            <a routerLink="/login" class="text-primary">Login here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -6,13 +6,18 @@ import { LoginComponent } from "../../Shared/components/login/login.component";
 import { RegisterComponent } from "../../Shared/components/register/register.component";
 import { PageNotFoundComponent } from "../../Shared/components/page-not-found/page-not-found.component";
 import { NgModule } from "@angular/core";
+import { courseResolver } from "../../Shared/Resolvers/course.resolver";
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'courses', component: CourseListComponent },
   //{ path: 'course', component: CoursedetailsComponent },
-  { path: 'courses/:id', component: CoursedetailsComponent },
+  {
+    path: 'courses/:id',
+    component: CoursedetailsComponent,
+    resolve:{coursedata:courseResolver}
+  },
   {path: 'login',component:LoginComponent},
   {path: 'register',component:RegisterComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full' },

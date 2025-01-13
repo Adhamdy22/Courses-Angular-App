@@ -1,7 +1,9 @@
 
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import { ICourse } from '../../../../Shared/Interfaces/Courses';
 import { CoursesService } from '../../../../Shared/services/courses.service';
+import { CourseCardComponent } from '../course-card/course-card.component';
+
 
 
 @Component({
@@ -9,17 +11,27 @@ import { CoursesService } from '../../../../Shared/services/courses.service';
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.css']
 })
-export class CourseListComponent implements OnInit {
+export class CourseListComponent implements OnInit,AfterViewInit {
   CoursesList: ICourse[] = [];   // Full list of courses
   coursesPerPage: ICourse[] = []; // Courses for the current page
   currentPage: number = 1;
   itemsPerPage: number = 10;
   totalPages: number = 0;
 
+  @ViewChildren(CourseCardComponent) coursechildren!: QueryList<CourseCardComponent>;
+
   constructor(private courseService: CoursesService) {}
 
   ngOnInit(): void {
     this.getCourses();
+  }
+
+  ngAfterViewInit(): void {
+      this.coursechildren.changes.subscribe((res:QueryList<CourseCardComponent>)=>{
+            res.forEach(course=>{
+              console.log("Course",course)
+            })
+      });
   }
 
   getCourses(): void {

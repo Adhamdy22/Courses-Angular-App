@@ -3,7 +3,7 @@ import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ICourse } from '../../../../Shared/Interfaces/Courses';
-import { CoursesService } from '../../../../Shared/services/courses.service';
+
 
 
 
@@ -23,7 +23,7 @@ export class CoursedetailsComponent {
   //  we use bindToComponentInputs if the app is not standalone
 
   // ?id= query parameter
-  constructor(private route: ActivatedRoute, private courseService: CoursesService,private router:Router) { }
+  constructor(private route: ActivatedRoute,private router:Router) { }
 
   // ngOnInit(): void {
   //   this.route.paramMap.subscribe(params => {
@@ -33,14 +33,24 @@ export class CoursedetailsComponent {
   // }
 
   ngOnInit(): void {
-    this.courseService.getCourses().subscribe((courses) => {
-      this.courses = courses;
-      this.route.paramMap.subscribe(params => {
-        const courseId = +params.get('id')!; // Get the course ID from the route
-        this.currentIndex = this.courses.findIndex(course => course.id === courseId);
-        this.course = this.courses[this.currentIndex];
-      });
-    });
+    // this.courseService.getCourses().subscribe((courses) => {
+    //   this.courses = courses;
+    //   this.route.paramMap.subscribe(params => {
+    //     const courseId = +params.get('id')!; // Get the course ID from the route
+    //     this.currentIndex = this.courses.findIndex(course => course.id === courseId);
+    //     this.course = this.courses[this.currentIndex];
+    //   });
+    // });
+
+    // this.route.data.subscribe(res=>{
+    //   console.log('res',res['coursedata']);
+    //   this.course=res['coursedata']
+    // })
+
+    this.route.data.subscribe(({coursedata})=>{
+      console.log('res',coursedata);
+      this.course=coursedata
+    })
   }
 
 
@@ -65,13 +75,13 @@ export class CoursedetailsComponent {
   //     this.courseData = data;
   //   });
   // }
-  getCourseDetails(id: string): void {
-    this.courseService.getCourseDetails(id).subscribe(data => {
-      this.course = data;
-    }, error => {
-      console.error('Error fetching course details', error);
-    });
-  }
+  // getCourseDetails(id: string): void {
+  //   this.courseService.getCourseDetails(id).subscribe(data => {
+  //     this.course = data;
+  //   }, error => {
+  //     console.error('Error fetching course details', error);
+  //   });
+  // }
 
 
 

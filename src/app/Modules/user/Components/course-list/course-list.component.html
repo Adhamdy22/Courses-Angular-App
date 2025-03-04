@@ -1,12 +1,64 @@
-<!-- src/app/course-list/course-list.component.html -->
-<div *ngIf="coursesPerPage.length > 0; else errorTemplate">
+
+
+<!-- <h1>Normal List</h1> -->
+<!-- <div *ngIf="CoursesList.length > 0; else errorlist">
   <div class="course-list">
-    <app-course-card *ngFor="let course of coursesPerPage" [course]="course"></app-course-card>
+    <app-course-card *ngFor="let course of CoursesList" [course]="course"></app-course-card>
   </div>
-  <div class="pagination-controls">
+   <div class="pagination-controls">
     <button (click)="prevPage()" [disabled]="currentPage === 1" class="btn btn-primary">Previous</button>
     <span>Page {{ currentPage }} of {{ totalPages }}</span>
     <button (click)="nextPage()" [disabled]="currentPage === totalPages" class="btn btn-primary">Next</button>
+  </div>
+</div> -->
+
+
+<!-- <ng-template #errorlist>
+  <div class="alert alert-danger">
+    Internet connection lost or no data available.
+  </div>
+  <button (click)="onclick()">Click</button>
+</ng-template> -->
+
+
+
+
+<!-- <h1>Signal List</h1>
+
+
+<div *ngIf="coursessignal().length > 0; else errorTemplate">
+  <div class="course-list">
+    <app-course-card *ngFor="let course of coursessignal()" [course]="course"></app-course-card>
+  </div>
+</div>
+
+
+<ng-template #errorTemplate>
+  <div class="alert alert-danger">
+    Internet connection lost or no data available.
+  </div>
+  <button (click)="onclick()">Click</button>
+</ng-template>  -->
+
+
+
+<h2 class="text-center">Computed Signal List</h2>
+
+<div class="container">
+  <!-- Search Box -->
+  <input
+    matInput
+    type="text"
+    class="form-control mb-3"
+    placeholder="🔍 Search courses..."
+
+    (input)="updateSearch($event)"
+
+  />
+
+<div *ngIf="filteredCourses().length > 0; else errorTemplate">
+  <div class="course-list">
+    <app-course-card *ngFor="let course of filteredCourses()" [course]="course"></app-course-card>
   </div>
 </div>
 
@@ -15,4 +67,8 @@
   <div class="alert alert-danger">
     Internet connection lost or no data available.
   </div>
+  <button (click)="onclick()">Click</button>
 </ng-template>
+
+
+

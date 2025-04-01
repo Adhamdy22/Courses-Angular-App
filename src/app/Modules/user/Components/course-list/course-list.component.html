@@ -56,9 +56,9 @@
 
   />
 
-<div *ngIf="filteredCourses().length > 0; else errorTemplate">
+<div *ngIf="filteredCourses().length > 0; else emptydataTemplate">
   <div class="course-list">
-    <app-course-card *ngFor="let course of filteredCourses()" [course]="course"></app-course-card>
+    <app-course-card *ngFor="let course of filteredCourses()" [CourseObject]="course"></app-course-card>
   </div>
 </div>
 
@@ -70,5 +70,11 @@
   <button (click)="onclick()">Click</button>
 </ng-template>
 
+
+<ng-template #emptydataTemplate>
+  <div>
+    <p>No Courses Found</p>
+  </div>
+</ng-template>
 
 

@@ -1,5 +1,5 @@
 
-import { AfterViewInit, ChangeDetectionStrategy,  Component, computed, OnInit, QueryList, signal, ViewChildren} from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, computed, effect, OnInit, QueryList, signal, ViewChildren } from '@angular/core';
 import { ICourse } from '../../../../Shared/Interfaces/Courses';
 import { CoursesService } from '../../../../Shared/services/courses.service';
 import { CourseCardComponent } from '../course-card/course-card.component';
@@ -8,30 +8,30 @@ import { CourseCardComponent } from '../course-card/course-card.component';
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.css'],
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CourseListComponent implements OnInit,AfterViewInit {
+export class CourseListComponent implements OnInit, AfterViewInit {
   CoursesList: ICourse[] = [];   // Full list of courses
   coursesPerPage: ICourse[] = []; // Courses for the current page
   currentPage: number = 1;
   itemsPerPage: number = 10;
   totalPages: number = 0;
 
-  private coursessignal=signal<ICourse[]>([]);
+  private coursessignal = signal<ICourse[]>([]);
 
-  searchtext=signal<string>('')
+  searchtext = signal<string>('')
 
   //computedcourses=computed(()=>this.coursessignal().map(c=>({...c,description:`${c.description}`})))
 
   filteredCourses = computed(() => {
-    
-    if(this.searchtext){
+
+    if (this.searchtext) {
       const query = this.searchtext().trim().toLowerCase();
       return this.coursessignal().filter(course =>
         course.description.toLowerCase().includes(query)
       );
     }
-    else{
+    else {
       return this.coursessignal()
     }
 
@@ -41,17 +41,31 @@ export class CourseListComponent implements OnInit,AfterViewInit {
 
   @ViewChildren(CourseCardComponent) coursechildren!: QueryList<CourseCardComponent>;
 
-  constructor(private courseService: CoursesService) {}
+  constructor(private courseService: CoursesService) {
+    // const effectRef = effect(() =>{
+    //   console.log('Displayed Courses',this.filteredCourses().length);
+    // },{allowSignalWrites:true,manualCleanup:true});
+    // effectRef.destroy()
+
+    effect((doCleanUp) => {
+      console.log('Displayed Courses', this.filteredCourses().length);
+      doCleanUp(() =>{
+         console.log('onCleanUp');
+      });
+    });
+
+
+  }
 
   ngOnInit(): void {
     this.getCourses();
   }
 
-  onclick(){
+  onclick() {
 
   }
 
-  UpdateSearchText(Searchtext:string){
+  UpdateSearchText(Searchtext: string) {
     this.searchtext.set(Searchtext)
   }
   updateSearch(event: Event) {
@@ -60,11 +74,11 @@ export class CourseListComponent implements OnInit,AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-      this.coursechildren.changes.subscribe((res:QueryList<CourseCardComponent>)=>{
-            res.forEach(course=>{
-              console.log("Course",course)
-            })
-      });
+    this.coursechildren.changes.subscribe((res: QueryList<CourseCardComponent>) => {
+      res.forEach(course => {
+        //console.log("Course", course)
+      })
+    });
   }
 
   getCourses(): void {

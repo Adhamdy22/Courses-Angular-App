@@ -1,23 +1,21 @@
 
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import { CarouselService } from '../../../../Shared/services/carousel.service';
+
+
+
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrl: './home.component.css',
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
-  images = [
-    '/Angula framework image seo.webp',
-    '/Django.webp',
-    '/Front-End-Development-Frameworks.png',
-    '/React_logo_wordmark.png',
-    '/Net-Logo-PNG-Image.png',
-    '/laravel-framework-min-1.webp',
-    '/node-js-logo-1024x512.webp'
+  images = this.carouselService.images;
+  isLoading = this.carouselService.isLoading; // ✅ Track loading state
 
-  ];
 
 
   carouselOptions = {
@@ -25,8 +23,8 @@ export class HomeComponent implements OnInit {
     margin: 20,
     nav: true,
     autoplay: true, // Enable autoplay
-    autoplayTimeout: 1500, // Time in milliseconds (3 seconds)
-    autoplayHoverPause: true, // Pause on hover
+    autoplayTimeout: 1500, // Time in milliseconds
+    autoplayHoverPause: true,
     responsive: {
       0: {
         items: 1,
@@ -44,9 +42,14 @@ export class HomeComponent implements OnInit {
   };
 
 
-  constructor() { }
+  constructor(private carouselService:CarouselService) {
 
-  ngOnInit(): void { }
+   }
+
+
+
+
+
 
 
 

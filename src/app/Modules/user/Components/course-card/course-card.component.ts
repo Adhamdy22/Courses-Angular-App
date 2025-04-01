@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input} from '@angular/core';
 
 
 import { ICourse } from '../../../../Shared/Interfaces/Courses';
@@ -10,7 +10,8 @@ import { ICourse } from '../../../../Shared/Interfaces/Courses';
   styleUrls: ['./course-card.component.css']
 })
 export class CourseCardComponent {
-  @Input() course!: ICourse;
+  // @Input({required:true,alias:'CourseObject'}) course!: ICourse;
+  course = input.required<ICourse>({ alias: 'CourseObject' });
 
 
 

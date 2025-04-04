@@ -1,4 +1,4 @@
-import { Component, input} from '@angular/core';
+import { booleanAttribute, Component, input, Input, numberAttribute, output} from '@angular/core';
 
 
 import { ICourse } from '../../../../Shared/Interfaces/Courses';
@@ -11,7 +11,18 @@ import { ICourse } from '../../../../Shared/Interfaces/Courses';
 })
 export class CourseCardComponent {
   // @Input({required:true,alias:'CourseObject'}) course!: ICourse;
+
   course = input.required<ICourse>({ alias: 'CourseObject' });
+
+  // output signal
+  confirm = output<void>({ alias: 'Confirm' });
+
+
+  @Input({required:true,transform:booleanAttribute}) disabled=false;
+
+  @Input({required:true,transform:(value:unknown) => numberAttribute(value,1)}) count=0;
+
+
 
 
 

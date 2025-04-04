@@ -8,6 +8,7 @@
         <div class="col-9">
 
           <div *ngIf="course">
+            <h3>Course {{ count}}</h3>
             <h3>{{ course().description }}</h3>
             <h4>Levels</h4>
             <div *ngFor="let lvl of course().levels">

@@ -58,7 +58,7 @@
 
 <div *ngIf="filteredCourses().length > 0; else emptydataTemplate">
   <div class="course-list">
-    <app-course-card *ngFor="let course of filteredCourses()" [CourseObject]="course"></app-course-card>
+    <app-course-card *ngFor="let course of filteredCourses()" [CourseObject]="course" disabled count="6"></app-course-card>
   </div>
 </div>
 

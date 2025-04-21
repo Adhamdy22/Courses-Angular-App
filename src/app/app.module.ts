@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import {BrowserModule, provideClientHydration } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +11,7 @@ import { SharedModule } from './Shared/shared.module';
 
 import { AppTranslateModule } from './Shared/Modules/app-translate/app-translate.module';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 
@@ -25,7 +26,8 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     BrowserModule,
     SharedModule,
     AppTranslateModule,
-    HttpClientModule // Ensure HttpClientModule is imported
+    HttpClientModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }) // Ensure HttpClientModule is imported
   ],
   providers: [
     provideClientHydration(),

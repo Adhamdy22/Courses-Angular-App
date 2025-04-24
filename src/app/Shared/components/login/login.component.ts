@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { login } from './state/login.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,7 @@ export class LoginComponent {
 
   form:FormGroup
 
-  constructor(private fb:FormBuilder){
+  constructor(private fb:FormBuilder,private store:Store<{email:string;password:string}>){
     this.form=this.fb.group({
       email:["",[Validators.email,Validators.required]],
       password:["",Validators.required]
@@ -25,7 +27,19 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log('Form Submitted!', this.form);
+    // this.store.dispatch({
+    //   type:'Login Page',
+    //   payload:{
+    //     email:this.form.get('email')?.value,
+    //     password:this.form.get('password')?.value
+    //   }
+    // })
+
+    const {email , password} = this.form.value
+
+    this.store.dispatch(login({email:email,password:password}))
+    console.log('Form Submitted!', login({email:email,password:password}));
+    this.form.reset()
     // Perform login logic here (API call, validation, etc.)
   }
 }

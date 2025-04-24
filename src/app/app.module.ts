@@ -13,7 +13,7 @@ import { AppTranslateModule } from './Shared/Modules/app-translate/app-translate
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-
+import { StoreModule } from '@ngrx/store';
 
 
 @NgModule({
@@ -27,6 +27,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     SharedModule,
     AppTranslateModule,
     HttpClientModule,
+    StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }) // Ensure HttpClientModule is imported
   ],
   providers: [
